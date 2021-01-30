@@ -1,0 +1,38 @@
+<div *ngIf="loaded" style="margin: auto;">
+    <div class="app-fieldset-container">
+        <p-fieldset legend="Destination" >
+            <div class="text-center"><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
+            <div *ngIf="detailViewModel.categories" class="text-center"><span>Categories: {{detailViewModel.categories}}</span></div>
+            <div class="text-center"><span>{{detailViewModel.address}}</span></div>
+            <div *ngIf="detailViewModel.phone" class="text-center"><a [href]="'tel:' + detailViewModel.phone">{{detailViewModel.phone}}</a></div>
+            <div *ngIf="detailViewModel.website" class="text-center"><a [href]="detailViewModel.website">{{detailViewModel.website}}</a></div>
+        </p-fieldset>     
+    </div>
+    <div class="app-fieldset-container">
+        <p-fieldset legend="Open Hours">
+            <div *ngIf="detailViewModel.openHours" class="text-center">
+                <table class="text-center" style="margin: auto;">
+                    <tr>
+                        <th>Day</th>
+                        <th>Open</th>
+                        <th></th>
+                        <th>Close</th>
+                    </tr>
+                    <ng-container *ngFor="let rng of detailViewModel.openHours">
+                        <tr>
+                            <td>{{rng.day}}</td>
+                            <ng-container *ngIf="rng.open === 'Closed'">
+                                <td colspan="3" class="text-center">Closed</td>
+                            </ng-container>
+                            <ng-container *ngIf="rng.open !== 'Closed'">
+                                <td>{{rng.open}}</td>
+                                <td>-</td>
+                                <td>{{rng.close}}</td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                </table>
+            </div>
+        </p-fieldset>    
+    </div>
+</div>

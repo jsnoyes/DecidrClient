@@ -1,0 +1,17 @@
+<div *ngIf="!isLoading && activeDestination">
+    <div class="app-panel">
+        <p-carousel [value]="panels" [numVisible]="3">
+            <ng-template let-panel pTemplate="item">
+                <div *ngIf="panel.type == panelTypes.map">
+                    <app-map [mapViewModel]="panel"></app-map>
+                </div>
+                <div *ngIf="panel.type == panelTypes.details">
+                    <app-details [detailViewModel]="panel"></app-details>
+                </div>
+                <div *ngIf="panel.type == panelTypes.picture">
+                    <app-picture [pictureViewModel]="panel"></app-picture>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>
