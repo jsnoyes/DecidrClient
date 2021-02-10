@@ -17,6 +17,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PictureComponent } from './components/shared/picture/picture.component';
 
+import {MenubarModule} from 'primeng/menubar';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PictureComponent } from './components/shared/picture/picture.component'
     FormsModule,
     CarouselModule,
     FieldsetModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MenubarModule
   ],
   providers: [LocationService, RoomService],
   bootstrap: [AppComponent]

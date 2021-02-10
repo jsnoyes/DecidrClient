@@ -5,7 +5,7 @@ import { DetailPanel, MapPanel, PanelViewModel, PicturePanel } from 'src/app/mod
 import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
-import { CarouselModule } from 'primeng/carousel';
+import { MenuItem } from 'primeng/api/menuitem';
 
 
 @Component({
@@ -19,9 +19,9 @@ export class RoomComponent implements OnInit {
   private room: RoomModel | null | undefined;
   public activeDestination: DestinationModel | undefined;
   public isLoading = true;
-  private activePanel = 0;
   public panels: PanelViewModel[] | any;
   public panelTypes = PanelType;
+  public menuItems!: MenuItem[];
 
 
   constructor(private route: ActivatedRoute, private roomService: RoomService) { }
@@ -35,10 +35,30 @@ export class RoomComponent implements OnInit {
       }
       this.activeDestination = d;
       this.panels = [new MapPanel(d), new DetailPanel(d), new PicturePanel(), new PicturePanel(), new PicturePanel()];
-      this.activePanel = 0;
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);
+
+    this.menuItems = [
+      {
+          label: 'Downvote',
+          icon: 'pi pi-fw pi-plus',
+          command: this.downvote
+      },
+      {
+          label: 'Upvote',
+          icon: 'pi pi-fw pi-pencil',
+          command: this.upvote
+      }
+    ];
+  }
+
+  private upvote(): void{
+
+  }
+
+  private downvote(): void{
+
   }
 
 }

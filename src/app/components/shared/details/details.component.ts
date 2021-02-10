@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DetailPanel, PanelViewModel } from 'src/app/models/panel-view-model';
+import { DetailPanel } from 'src/app/models/panel-view-model';
 
 @Component({
   selector: 'app-details',

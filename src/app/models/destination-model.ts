@@ -1,4 +1,5 @@
 import { OpenHoursRange } from './open-hours-range';
+import { Review } from './review';
 import { VoteModel } from './vote-model';
 
 export interface DestinationModel {
@@ -8,9 +9,13 @@ export interface DestinationModel {
     addressName: string;
     name: string;
     url: string;
+    googleUrl: string;
     phoneNumber: string;
     map: string;
-    openHours: OpenHoursRange[];
+    openHours: string[];
     votes: VoteModel[];
     categories: string[];
+    priceLevel: number;
+    rating: number;
+    reviews: Review[];
 }

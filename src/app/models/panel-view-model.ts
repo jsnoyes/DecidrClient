@@ -18,7 +18,7 @@ export class MapPanel extends PanelViewModel {
 export class DetailPanel extends PanelViewModel {
     type = PanelType.details;
     categories: string;
-    openHours: OpenHoursRange[] | undefined;
+    openHours: string[];
     name: string;
     address: string;
     phone: string;
@@ -29,29 +29,7 @@ export class DetailPanel extends PanelViewModel {
         this.categories = destination.categories.join(', ');
         this.phone = destination.phoneNumber;
         this.website = destination.url;
-        // this.openHours = destination.openHours;
-        if (destination.openHours) {
-            destination.openHours.forEach(o => {
-                o.day = new Date(o.fromTime).toLocaleDateString([], { weekday: 'long' });
-                o.open = new Date(o.fromTime).toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true});
-                o.close = new Date(o.toTime).toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true});
-            });
-            const curDay = new Date().getDay();
-            const newArr: OpenHoursRange[] = [];
-            ([curDay, curDay + 1, curDay + 2, curDay + 3, curDay + 4, curDay + 5, curDay + 6]).forEach(d => {
-                const dDay = d % 7;
-                const existing = destination.openHours.find(h => new Date(h.fromTime).getDay() === dDay);
-                if (existing) {
-                    newArr.push(existing);
-                } else {
-                    const date = new Date();
-                    date.setDate(date.getDate() + d);
-                    newArr.push({day: date.toLocaleDateString([], { weekday: 'long' }), open: 'Closed', close: 'Closed',
-                        fromTime: date, toTime: date});
-                }
-            });
-            this.openHours = newArr;
-        }
+        this.openHours = destination.openHours;
         this.name = destination.name;
         this.address = destination.addressName;
     }
