@@ -16,7 +16,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PictureComponent } from './components/shared/picture/picture.component';
-
+import {RatingModule} from 'primeng/rating';
 import {MenubarModule} from 'primeng/menubar';
 
 
@@ -38,7 +38,8 @@ import {MenubarModule} from 'primeng/menubar';
     CarouselModule,
     FieldsetModule,
     BrowserAnimationsModule,
-    MenubarModule
+    MenubarModule,
+    RatingModule
   ],
   providers: [LocationService, RoomService],
   bootstrap: [AppComponent]
