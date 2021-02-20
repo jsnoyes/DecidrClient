@@ -1,9 +1,13 @@
-.app-panel {
+/* .app-panel {
     max-width: 1500px;
     margin: auto;
 }
-
-.app-menu {
+*/
+/* .app-menu {
     max-width: 500px;
     margin: auto;
+} */
+
+.p-carousel-indicators {
+    display: none !important;
 }

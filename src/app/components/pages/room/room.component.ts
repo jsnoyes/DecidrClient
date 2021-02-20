@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationModel } from 'src/app/models/destination-model';
 import { DetailPanel, MapPanel, PanelViewModel, PicturePanel } from 'src/app/models/panel-view-model';
@@ -11,7 +11,8 @@ import { MenuItem } from 'primeng/api/menuitem';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+  styleUrls: ['./room.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RoomComponent implements OnInit {
 
@@ -22,9 +23,23 @@ export class RoomComponent implements OnInit {
   public panels: PanelViewModel[] | any;
   public panelTypes = PanelType;
   public menuItems!: MenuItem[];
+  public responsiveOptions: any[];
 
 
-  constructor(private route: ActivatedRoute, private roomService: RoomService) { }
+  constructor(private route: ActivatedRoute, private roomService: RoomService) {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1100px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '800px',
+          numVisible: 1,
+          numScroll: 1
+      }
+    ];
+  }
 
   ngOnInit(): void {
     this.roomId = this.route.snapshot.paramMap.get('roomId') || '0';

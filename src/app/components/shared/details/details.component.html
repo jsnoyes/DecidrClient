@@ -1,19 +1,12 @@
 <div *ngIf="loaded" style="margin: auto;">
     <div class="app-fieldset-container">
         <p-fieldset legend="Destination" >
-            <div class="text-center"><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
-            <div *ngIf="detailViewModel.rating" class="text-center"><span style="display: inline-block; margin: 5px;">{{detailViewModel.rating}}</span> <p-rating style="display: inline-block; margin: 5px;" [ngModel]="detailViewModel.rating" [readonly]="true" [cancel]="false"></p-rating> <span style="display: inline-block; margin: 5px;">({{detailViewModel.reviews.length}} Reviews)</span></div>
-            <div *ngIf="detailViewModel.categories" class="text-center"><span>{{detailViewModel.categories}}</span></div>
-            <div *ngIf="detailViewModel.categories" class="text-center"><span>Categories: {{detailViewModel.categories}}</span></div>
-
-
-
-            
-            <div class="text-center"><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
-            <div class="text-center"><span>{{detailViewModel.address}}</span></div>
-            <div *ngIf="detailViewModel.phone" class="text-center"><a [href]="'tel:' + detailViewModel.phone">{{detailViewModel.phone}}</a></div>
-            <div *ngIf="detailViewModel.website" class="text-center"><a [href]="detailViewModel.website" target="_blank">{{detailViewModel.website}}</a></div>
-            <div *ngIf="detailViewModel.categories" class="text-center"><span>Categories: {{detailViewModel.categories}}</span></div>
+            <div><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
+            <div *ngIf="detailViewModel.rating"><span style="display: inline-block; margin: 5px;">{{detailViewModel.rating}}</span> <p-rating style="display: inline-block; margin: 5px;" [ngModel]="detailViewModel.rating" [readonly]="true" [cancel]="false"></p-rating> <span style="display: inline-block; margin: 5px;">({{detailViewModel.reviews.length}} Reviews)</span></div>
+            <div *ngIf="detailViewModel.categories"><span>{{detailViewModel.categories}}</span></div>
+            <div *ngIf="detailViewModel.address"><span style="font-weight: bold;">Address: </span><span>{{detailViewModel.address}}</span></div>
+            <div *ngIf="detailViewModel.phone"><span style="font-weight: bold;">Phone: </span><a [href]="'tel:' + detailViewModel.phone">{{detailViewModel.phone}}</a></div>
+            <div *ngIf="detailViewModel.website"><span style="font-weight: bold;">Website: </span><a [href]="detailViewModel.website" target="_blank">{{detailViewModel.websiteDisplay}}</a></div>
         </p-fieldset>     
     </div>
     <div class="app-fieldset-container">

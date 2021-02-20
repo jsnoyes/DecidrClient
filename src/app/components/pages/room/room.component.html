@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading && activeDestination">
     <div class="app-panel">
-        <p-carousel [value]="panels" [numVisible]="3">
+        <p-carousel [value]="panels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
             <ng-template let-panel pTemplate="item">
                 <div *ngIf="panel.type == panelTypes.map">
                     <app-map [mapViewModel]="panel"></app-map>
@@ -15,6 +15,8 @@
         </p-carousel>
     </div>
     <div class="app-menu">
-        <p-menubar [model]="menuItems"></p-menubar>
+        <p-menubar [model]="menuItems">
+            <ng-template pTemplate="start">{{activeDestination.name}}</ng-template>
+        </p-menubar>
     </div>  
 </div>
