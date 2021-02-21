@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationModel } from 'src/app/models/destination-model';
-import { DetailPanel, MapPanel, PanelViewModel, PicturePanel } from 'src/app/models/panel-view-model';
+import { DetailPanel, MapPanel, PanelViewModel, PicturePanel, ReviewPanel } from 'src/app/models/panel-view-model';
 import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
 import { MenuItem } from 'primeng/api/menuitem';
+import { PictureComponent } from '../../shared/picture/picture.component';
 
 
 @Component({
@@ -49,7 +50,9 @@ export class RoomComponent implements OnInit {
         return;
       }
       this.activeDestination = d;
-      this.panels = [new MapPanel(d), new DetailPanel(d), new PicturePanel(), new PicturePanel(), new PicturePanel()];
+      const reviewPanels = d.reviews.map(r => new ReviewPanel(r));
+      const picturePanels = d.photos.map(p => new PicturePanel(p));
+      this.panels = [new MapPanel(d), new DetailPanel(d), ...reviewPanels, ...picturePanels];
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);

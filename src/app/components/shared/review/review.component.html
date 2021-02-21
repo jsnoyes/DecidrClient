@@ -1,0 +1,12 @@
+<div *ngIf="loaded" style="margin: auto;"> 
+    <div class="app-fieldset-container">
+        <p-fieldset legend="Review" >
+            <div><span style="font-weight: bold;">{{reviewViewModel.review.authorName}}</span></div>
+            <div>
+                <p-rating *ngIf="reviewViewModel.review.rating" style="display: inline-block; margin: 5px;" [ngModel]="reviewViewModel.review.rating" [readonly]="true" [cancel]="false"></p-rating>
+                <span *ngIf="reviewViewModel.review.relativeTimeDescription" style="display: inline-block; margin: 5px; font-weight: lighter;">{{reviewViewModel.review.relativeTimeDescription}}</span>
+            </div>
+            <div *ngIf="reviewViewModel.review.text"><span>{{reviewViewModel.review.text}}</span></div>
+        </p-fieldset>
+    </div>
+</div>

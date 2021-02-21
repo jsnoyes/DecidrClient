@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PictureComponent } from './components/shared/picture/picture.component';
 import {RatingModule} from 'primeng/rating';
 import {MenubarModule} from 'primeng/menubar';
+import { ReviewComponent } from './components/shared/review/review.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MenubarModule} from 'primeng/menubar';
     MapComponent,
     DetailsComponent,
     FooterComponent,
-    PictureComponent
+    PictureComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

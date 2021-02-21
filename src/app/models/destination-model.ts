@@ -18,4 +18,5 @@ export interface DestinationModel {
     priceLevel: number;
     rating: number;
     reviews: Review[];
+    photos: string[];
 }

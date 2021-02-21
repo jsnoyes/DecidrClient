@@ -11,6 +11,9 @@
                 <div *ngIf="panel.type == panelTypes.picture">
                     <app-picture [pictureViewModel]="panel"></app-picture>
                 </div>
+                <div *ngIf="panel.type == panelTypes.review">
+                    <app-review [reviewViewModel]="panel"></app-review>
+                </div>
             </ng-template>
         </p-carousel>
     </div>

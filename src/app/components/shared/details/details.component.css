@@ -1,3 +1,7 @@
 .app-fieldset-container {
     margin: 1em;
 }
+
+.p-rating .p-rating-icon {
+    cursor: default !important;
+}

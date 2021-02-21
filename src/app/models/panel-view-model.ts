@@ -16,6 +16,16 @@ export class MapPanel extends PanelViewModel {
     }
 }
 
+export class ReviewPanel extends PanelViewModel {
+    type = PanelType.review;
+    review: Review;
+
+    constructor(review: Review){
+        super();
+        this.review = review;
+    }
+}
+
 export class DetailPanel extends PanelViewModel {
     type = PanelType.details;
     categories: string | undefined;
@@ -48,11 +58,18 @@ export class DetailPanel extends PanelViewModel {
 
 export class PicturePanel extends PanelViewModel {
     type = PanelType.picture;
+    picture: string;
+
+    constructor(picture: string){
+        super();
+        this.picture = 'data:image/jpeg;base64,' + picture;
+    }
 }
 
 
 export enum PanelType {
     map,
     details,
-    picture
+    picture,
+    review
 }
