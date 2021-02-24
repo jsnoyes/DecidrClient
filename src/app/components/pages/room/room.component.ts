@@ -22,6 +22,7 @@ export class RoomComponent implements OnInit {
   public activeDestination: DestinationModel | undefined;
   public isLoading = true;
   public panels: PanelViewModel[] | any;
+  public picturePanels: PicturePanel[] | any;
   public panelTypes = PanelType;
   public menuItems!: MenuItem[];
   public responsiveOptions: any[];
@@ -50,9 +51,9 @@ export class RoomComponent implements OnInit {
         return;
       }
       this.activeDestination = d;
-      const reviewPanels = d.reviews.map(r => new ReviewPanel(r));
       const picturePanels = d.photos.map(p => new PicturePanel(p));
-      this.panels = [new MapPanel(d), new DetailPanel(d), ...reviewPanels, ...picturePanels];
+      this.panels = [new MapPanel(d), new DetailPanel(d), new ReviewPanel(d.reviews)];
+      this.picturePanels = picturePanels;
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);

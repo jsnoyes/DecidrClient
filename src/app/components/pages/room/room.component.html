@@ -16,6 +16,15 @@
                 </div>
             </ng-template>
         </p-carousel>
+    </div>    
+    <div class="app-panel">
+        <p-carousel [value]="picturePanels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
+            <ng-template let-panel pTemplate="item">
+                <div *ngIf="panel.type == panelTypes.picture">
+                    <app-picture [pictureViewModel]="panel"></app-picture>
+                </div>
+            </ng-template>
+        </p-carousel>
     </div>
     <div class="app-menu">
         <p-menubar [model]="menuItems">

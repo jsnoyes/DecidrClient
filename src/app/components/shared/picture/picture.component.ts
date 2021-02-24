@@ -11,7 +11,7 @@ export class PictureComponent implements OnInit {
   @Input()
   public pictureViewModel!: PicturePanel;
 
-  private loaded = false;
+  public loaded = false;
 
   constructor() { }
 

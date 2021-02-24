@@ -1,5 +1,5 @@
-.app-fieldset-container {
-    margin: 1em;
+.p-fieldset-content {
+    padding: 0 !important;
 }
 
 .p-rating .p-rating-icon {

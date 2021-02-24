@@ -1,25 +1,21 @@
 <div *ngIf="loaded" style="margin: auto;">
-    <div class="app-fieldset-container">
-        <p-fieldset legend="Destination" >
-            <div><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
-            <div *ngIf="detailViewModel.rating"><span style="display: inline-block; margin: 5px;">{{detailViewModel.rating}}</span> <p-rating style="display: inline-block; margin: 5px;" [ngModel]="detailViewModel.rating" [readonly]="true" [cancel]="false"></p-rating> <span style="display: inline-block; margin: 5px;">({{detailViewModel.reviews.length}} Reviews)</span></div>
-            <div *ngIf="detailViewModel.categories"><span>{{detailViewModel.categories}}</span></div>
-            <div *ngIf="detailViewModel.address"><span style="font-weight: bold;">Address: </span><span>{{detailViewModel.address}}</span></div>
-            <div *ngIf="detailViewModel.phone"><span style="font-weight: bold;">Phone: </span><a [href]="'tel:' + detailViewModel.phone">{{detailViewModel.phone}}</a></div>
-            <div *ngIf="detailViewModel.website"><span style="font-weight: bold;">Website: </span><a [href]="detailViewModel.website" target="_blank">{{detailViewModel.websiteDisplay}}</a></div>
-        </p-fieldset>     
-    </div>
-    <div class="app-fieldset-container">
-        <p-fieldset legend="Open Hours">
-            <div *ngIf="detailViewModel.openHours" class="text-center">
-                <table class="text-center" style="margin: auto;">
-                    <ng-container *ngFor="let hours of detailViewModel.openHours">
-                        <tr>
-                            <td>{{hours}}</td>
-                        </tr>
-                    </ng-container>
-                </table>
-            </div>
-        </p-fieldset>    
-    </div>
+    <p-fieldset legend="Destination">
+        <div><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
+        <div *ngIf="detailViewModel.rating"><span style="display: inline-block; margin: 5px;">{{detailViewModel.rating}}</span> <p-rating style="display: inline-block; margin: 5px;" [ngModel]="detailViewModel.rating" [readonly]="true" [cancel]="false"></p-rating> <span style="display: inline-block; margin: 5px;">({{detailViewModel.reviews.length}} Reviews)</span></div>
+        <div *ngIf="detailViewModel.categories"><span>{{detailViewModel.categories}}</span></div>
+        <div *ngIf="detailViewModel.address"><span style="font-weight: bold;">Address: </span><span>{{detailViewModel.address}}</span></div>
+        <div *ngIf="detailViewModel.phone"><span style="font-weight: bold;">Phone: </span><a [href]="'tel:' + detailViewModel.phone">{{detailViewModel.phone}}</a></div>
+        <div *ngIf="detailViewModel.website"><span style="font-weight: bold;">Website: </span><a [href]="detailViewModel.website" target="_blank">{{detailViewModel.websiteDisplay}}</a></div>
+    </p-fieldset>
+    <p-fieldset legend="Open Hours">
+        <div *ngIf="detailViewModel.openHours">
+            <table>
+                <ng-container *ngFor="let hours of detailViewModel.openHours">
+                    <tr>
+                        <td>{{hours}}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+    </p-fieldset>
 </div>

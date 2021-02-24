@@ -18,11 +18,11 @@ export class MapPanel extends PanelViewModel {
 
 export class ReviewPanel extends PanelViewModel {
     type = PanelType.review;
-    review: Review;
+    reviews: Review[];
 
-    constructor(review: Review){
+    constructor(reviews: Review[]){
         super();
-        this.review = review;
+        this.reviews = reviews;
     }
 }
 

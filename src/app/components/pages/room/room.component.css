@@ -11,3 +11,11 @@
 .p-carousel-indicators {
     display: none !important;
 }
+
+.p-carousel-prev {
+    margin: 0 !important;
+}
+
+.app-fieldset {
+    height: 500px !important;
+}
