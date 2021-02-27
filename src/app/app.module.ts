@@ -19,7 +19,8 @@ import { PictureComponent } from './components/shared/picture/picture.component'
 import {RatingModule} from 'primeng/rating';
 import {MenubarModule} from 'primeng/menubar';
 import { ReviewComponent } from './components/shared/review/review.component';
-
+import {GalleriaModule} from 'primeng/galleria';
+import {DividerModule} from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { ReviewComponent } from './components/shared/review/review.component';
     FieldsetModule,
     BrowserAnimationsModule,
     MenubarModule,
-    RatingModule
+    RatingModule,
+    GalleriaModule,
+    DividerModule
   ],
   providers: [LocationService, RoomService],
   bootstrap: [AppComponent]

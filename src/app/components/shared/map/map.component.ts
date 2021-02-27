@@ -1,23 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MapPanel, PanelViewModel } from 'src/app/models/panel-view-model';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit {
 
   @Input()
   public mapViewModel!: MapPanel;
-  public map: string | undefined;
 
-  private loaded = false;
+  public loaded = false;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.map = 'data:image/png;base64,' + this.mapViewModel.map;
-    this.loaded = true;
+    if (this.mapViewModel !== undefined){
+      this.loaded = true;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReviewPanel } from 'src/app/models/panel-view-model';
+// import { ReviewPanel } from 'src/app/models/panel-view-model';
 
 @Component({
   selector: 'app-review',
@@ -8,8 +8,8 @@ import { ReviewPanel } from 'src/app/models/panel-view-model';
 })
 export class ReviewComponent implements OnInit {
 
-  @Input()
-  public reviewViewModel!: ReviewPanel;
+  // @Input()
+  // public reviewViewModel!: ReviewPanel;
 
   public loaded = false;
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationModel } from 'src/app/models/destination-model';
-import { DetailPanel, MapPanel, PanelViewModel, PicturePanel, ReviewPanel } from 'src/app/models/panel-view-model';
+import { DetailPanel, MapPanel, PanelViewModel } from 'src/app/models/panel-view-model';
 import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
@@ -21,26 +21,28 @@ export class RoomComponent implements OnInit {
   private room: RoomModel | null | undefined;
   public activeDestination: DestinationModel | undefined;
   public isLoading = true;
-  public panels: PanelViewModel[] | any;
-  public picturePanels: PicturePanel[] | any;
+  // public panels: PanelViewModel[] | any;
+  // public picturePanels: PicturePanel[] | any;
+  public mapPanel: MapPanel | any;
+  public detailsPanel: DetailPanel | any;
   public panelTypes = PanelType;
   public menuItems!: MenuItem[];
-  public responsiveOptions: any[];
+  // public responsiveOptions: any[];
 
 
   constructor(private route: ActivatedRoute, private roomService: RoomService) {
-    this.responsiveOptions = [
-      {
-          breakpoint: '1100px',
-          numVisible: 2,
-          numScroll: 2
-      },
-      {
-          breakpoint: '800px',
-          numVisible: 1,
-          numScroll: 1
-      }
-    ];
+    // this.responsiveOptions = [
+    //   {
+    //       breakpoint: '1100px',
+    //       numVisible: 2,
+    //       numScroll: 2
+    //   },
+    //   {
+    //       breakpoint: '800px',
+    //       numVisible: 1,
+    //       numScroll: 1
+    //   }
+    // ];
   }
 
   ngOnInit(): void {
@@ -51,9 +53,11 @@ export class RoomComponent implements OnInit {
         return;
       }
       this.activeDestination = d;
-      const picturePanels = d.photos.map(p => new PicturePanel(p));
-      this.panels = [new MapPanel(d), new DetailPanel(d), new ReviewPanel(d.reviews)];
-      this.picturePanels = picturePanels;
+      this.mapPanel = new MapPanel(d);
+      this.detailsPanel = new DetailPanel(d);
+      // const picturePanels = d.photos.map(p => new PicturePanel(p));
+      // this.panels = [new MapPanel(d), new DetailPanel(d)];
+      // this.picturePanels = picturePanels;
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);

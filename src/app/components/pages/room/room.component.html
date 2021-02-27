@@ -1,23 +1,26 @@
 <div *ngIf="!isLoading && activeDestination">
-    <div class="app-panel">
-        <p-carousel [value]="panels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
+    <div class="app-panel p-grid">
+        <div class="p-col-2"></div>
+        <div class="p-col-4">
+        <app-map [mapViewModel]="mapPanel"></app-map>
+        </div>
+        <div class="p-col-4">
+            <app-details [detailViewModel]="detailsPanel"></app-details>
+        </div>
+        <div class="p-col-2"></div>
+        <!-- <p-carousel [value]="panels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
             <ng-template let-panel pTemplate="item">
                 <div *ngIf="panel.type == panelTypes.map">
-                    <app-map [mapViewModel]="panel"></app-map>
                 </div>
                 <div *ngIf="panel.type == panelTypes.details">
-                    <app-details [detailViewModel]="panel"></app-details>
                 </div>
-                <div *ngIf="panel.type == panelTypes.picture">
+                 <div *ngIf="panel.type == panelTypes.picture">
                     <app-picture [pictureViewModel]="panel"></app-picture>
-                </div>
-                <div *ngIf="panel.type == panelTypes.review">
-                    <app-review [reviewViewModel]="panel"></app-review>
-                </div>
+                </div> 
             </ng-template>
-        </p-carousel>
+        </p-carousel> -->
     </div>    
-    <div class="app-panel">
+    <!-- <div class="app-panel">
         <p-carousel [value]="picturePanels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
             <ng-template let-panel pTemplate="item">
                 <div *ngIf="panel.type == panelTypes.picture">
@@ -25,7 +28,7 @@
                 </div>
             </ng-template>
         </p-carousel>
-    </div>
+    </div> -->
     <div class="app-menu">
         <p-menubar [model]="menuItems">
             <ng-template pTemplate="start">{{activeDestination.name}}</ng-template>

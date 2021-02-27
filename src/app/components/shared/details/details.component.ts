@@ -17,7 +17,9 @@ export class DetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loaded = true;
+    if (this.detailViewModel !== undefined){
+      this.loaded = true;
+    }
   }
 
 }

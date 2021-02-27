@@ -9,20 +9,12 @@ export class PanelViewModel {
 export class MapPanel extends PanelViewModel {
     type = PanelType.map;
     map: string;
+    pictures: string[];
 
     constructor(destination: DestinationModel) {
         super();
-        this.map = destination.map;
-    }
-}
-
-export class ReviewPanel extends PanelViewModel {
-    type = PanelType.review;
-    reviews: Review[];
-
-    constructor(reviews: Review[]){
-        super();
-        this.reviews = reviews;
+        this.map = 'data:image/jpeg;base64,' + destination.map;
+        this.pictures = destination.photos.map(p => 'data:image/jpeg;base64,' + p);
     }
 }
 
@@ -56,20 +48,18 @@ export class DetailPanel extends PanelViewModel {
     }
 }
 
-export class PicturePanel extends PanelViewModel {
-    type = PanelType.picture;
-    picture: string;
+// export class PicturePanel extends PanelViewModel {
+//     type = PanelType.picture;
+//     pictures: string[];
 
-    constructor(picture: string){
-        super();
-        this.picture = 'data:image/jpeg;base64,' + picture;
-    }
-}
+//     constructor(pictures: string[]){
+//         super();
+//         this.pictures = pictures.map(p => 'data:image/jpeg;base64,' + p);
+//     }
+// }
 
 
 export enum PanelType {
     map,
-    details,
-    picture,
-    review
+    details
 }

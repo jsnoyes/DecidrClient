@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PanelViewModel, PicturePanel } from 'src/app/models/panel-view-model';
+// import { PanelViewModel, PicturePanel } from 'src/app/models/panel-view-model';
 
 @Component({
   selector: 'app-picture',
@@ -8,8 +8,8 @@ import { PanelViewModel, PicturePanel } from 'src/app/models/panel-view-model';
 })
 export class PictureComponent implements OnInit {
 
-  @Input()
-  public pictureViewModel!: PicturePanel;
+  // @Input()
+  // public pictureViewModel!: PicturePanel;
 
   public loaded = false;
 

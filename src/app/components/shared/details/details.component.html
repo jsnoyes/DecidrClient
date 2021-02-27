@@ -1,4 +1,4 @@
-<div *ngIf="loaded" style="margin: auto;">
+<div *ngIf="loaded" style="margin: auto; overflow-y: auto;">
     <p-fieldset legend="Destination">
         <div><span style="font-weight: bold;">{{detailViewModel.name}}</span></div>
         <div *ngIf="detailViewModel.rating"><span style="display: inline-block; margin: 5px;">{{detailViewModel.rating}}</span> <p-rating style="display: inline-block; margin: 5px;" [ngModel]="detailViewModel.rating" [readonly]="true" [cancel]="false"></p-rating> <span style="display: inline-block; margin: 5px;">({{detailViewModel.reviews.length}} Reviews)</span></div>
@@ -16,6 +16,19 @@
                     </tr>
                 </ng-container>
             </table>
+        </div>
+    </p-fieldset>
+    <p-fieldset legend="Reviews">
+        <div *ngFor="let review of detailViewModel.reviews; let i = index">
+            <p-divider *ngIf="i !== 0"></p-divider>
+            <div class="app-fieldset-container">
+                <div><span style="font-weight: bold;">{{review.authorName}}</span></div>
+                <div>
+                    <p-rating *ngIf="review.rating" style="display: inline-block; margin: 5px;" [ngModel]="review.rating" [readonly]="true" [cancel]="false"></p-rating>
+                    <span *ngIf="review.relativeTimeDescription" style="display: inline-block; margin: 5px; font-weight: lighter;">{{review.relativeTimeDescription}}</span>
+                </div>
+                <div *ngIf="review.text"><span>{{review.text}}</span></div>
+            </div> 
         </div>
     </p-fieldset>
 </div>

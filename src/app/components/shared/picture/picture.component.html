@@ -1,7 +1,16 @@
-<div *ngIf="loaded" style="margin: auto;"> 
+<!-- <div *ngIf="loaded" style="margin: auto;"> 
     <div class="app-fieldset-container">
-        <p-fieldset styleClass="app-fieldset" legend="Photo">
-            <img class="margin-center" style="display:block; width: 100%" [src]="pictureViewModel.picture"/>
-        </p-fieldset>
+
+            
+        <p-galleria [value]="pictureViewModel.pictures" [containerStyle]="{'max-width': '500px'}">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item" style="display:block; width: 100%"  />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="p-grid p-nogutter p-justify-center">
+                    <img [src]="item" style="width: 100px"/>
+                </div>
+            </ng-template>
+        </p-galleria>
     </div>
-</div>
+</div> -->
