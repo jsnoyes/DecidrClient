@@ -1,13 +1,11 @@
 <div *ngIf="!isLoading && activeDestination">
     <div class="app-panel p-grid">
-        <div class="p-col-2"></div>
-        <div class="p-col-4">
-        <app-map [mapViewModel]="mapPanel"></app-map>
+        <div class="p-xl-5 p-xl-offset-1 p-lg-6 p-lg-offset-0 p-md-10 p-md-offset-1 p-sm-12">
+            <app-map [mapViewModel]="mapPanel"></app-map>
         </div>
-        <div class="p-col-4">
+        <div class="p-xl-5 p-lg-6 p-lg-offset-0 p-md-10 p-md-offset-1 p-sm-12">
             <app-details [detailViewModel]="detailsPanel"></app-details>
         </div>
-        <div class="p-col-2"></div>
         <!-- <p-carousel [value]="panels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
             <ng-template let-panel pTemplate="item">
                 <div *ngIf="panel.type == panelTypes.map">
