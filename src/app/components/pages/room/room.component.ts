@@ -6,6 +6,7 @@ import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
 import { MenuItem } from 'primeng/api/menuitem';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -20,31 +21,24 @@ export class RoomComponent implements OnInit {
   private room: RoomModel | null | undefined;
   public activeDestination: DestinationModel | undefined;
   public isLoading = true;
-  // public panels: PanelViewModel[] | any;
-  // public picturePanels: PicturePanel[] | any;
   public mapPanel: MapPanel | any;
   public detailsPanel: DetailPanel | any;
   public panelTypes = PanelType;
   public menuItems!: MenuItem[];
-  // public responsiveOptions: any[];
+  public displayDialog = false;
 
 
-  constructor(private route: ActivatedRoute, private roomService: RoomService) {
-    // this.responsiveOptions = [
-    //   {
-    //       breakpoint: '1100px',
-    //       numVisible: 2,
-    //       numScroll: 2
-    //   },
-    //   {
-    //       breakpoint: '800px',
-    //       numVisible: 1,
-    //       numScroll: 1
-    //   }
-    // ];
+  constructor(private route: ActivatedRoute, private roomService: RoomService, private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.userService.User.subscribe(u => {
+      if (u === undefined){
+        this.displayDialog = true;
+      } else{
+        this.displayDialog = false;
+      }
+    });
     this.roomId = this.route.snapshot.paramMap.get('roomId') || '0';
     this.roomService.Room.subscribe(r => this.room = r);
     this.roomService.ActiveDestination.subscribe(d => {
@@ -54,9 +48,6 @@ export class RoomComponent implements OnInit {
       this.activeDestination = d;
       this.mapPanel = new MapPanel(d);
       this.detailsPanel = new DetailPanel(d);
-      // const picturePanels = d.photos.map(p => new PicturePanel(p));
-      // this.panels = [new MapPanel(d), new DetailPanel(d)];
-      // this.picturePanels = picturePanels;
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);

@@ -1,0 +1,7 @@
+<h1>Pick a name!</h1>
+<div class="p-col-12">
+    <div class="p-inputgroup">
+        <input class="form-control" name="usernameToLogin" type="text" pInputText (keyup.enter)="Login()" [(ngModel)]="usernameToLogin"/>
+        <button type="button" pButton pRipple icon="pi pi-check" styleClass="p-button-success" (click)="Login()"></button> 
+    </div>
+</div>

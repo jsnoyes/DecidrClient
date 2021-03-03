@@ -19,6 +19,10 @@ import {RatingModule} from 'primeng/rating';
 import {MenubarModule} from 'primeng/menubar';
 import {GalleriaModule} from 'primeng/galleria';
 import {DividerModule} from 'primeng/divider';
+import { LoginComponent } from './components/shared/login/login.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import {DividerModule} from 'primeng/divider';
     RoomComponent,
     MapComponent,
     DetailsComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,10 @@ import {DividerModule} from 'primeng/divider';
     MenubarModule,
     RatingModule,
     GalleriaModule,
-    DividerModule
+    DividerModule,
+    InputTextModule,
+    ButtonModule,
+    DialogModule
   ],
   providers: [LocationService, RoomService],
   bootstrap: [AppComponent]
