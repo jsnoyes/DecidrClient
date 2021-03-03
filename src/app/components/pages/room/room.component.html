@@ -6,27 +6,7 @@
         <div class="p-xl-5 p-lg-6 p-lg-offset-0 p-md-10 p-md-offset-1 p-sm-12">
             <app-details [detailViewModel]="detailsPanel"></app-details>
         </div>
-        <!-- <p-carousel [value]="panels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
-            <ng-template let-panel pTemplate="item">
-                <div *ngIf="panel.type == panelTypes.map">
-                </div>
-                <div *ngIf="panel.type == panelTypes.details">
-                </div>
-                 <div *ngIf="panel.type == panelTypes.picture">
-                    <app-picture [pictureViewModel]="panel"></app-picture>
-                </div> 
-            </ng-template>
-        </p-carousel> -->
-    </div>    
-    <!-- <div class="app-panel">
-        <p-carousel [value]="picturePanels" [numVisible]="3" [responsiveOptions]="responsiveOptions">
-            <ng-template let-panel pTemplate="item">
-                <div *ngIf="panel.type == panelTypes.picture">
-                    <app-picture [pictureViewModel]="panel"></app-picture>
-                </div>
-            </ng-template>
-        </p-carousel>
-    </div> -->
+    </div>
     <div class="app-menu">
         <p-menubar [model]="menuItems">
             <ng-template pTemplate="start">{{activeDestination.name}}</ng-template>

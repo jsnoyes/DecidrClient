@@ -6,7 +6,6 @@ import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
 import { MenuItem } from 'primeng/api/menuitem';
-import { PictureComponent } from '../../shared/picture/picture.component';
 
 
 @Component({

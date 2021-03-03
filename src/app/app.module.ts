@@ -15,10 +15,8 @@ import { FooterComponent } from 'src/app/components/shared/footer/footer.compone
 import { CarouselModule } from 'primeng/carousel';
 import { FieldsetModule } from 'primeng/fieldset';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PictureComponent } from './components/shared/picture/picture.component';
 import {RatingModule} from 'primeng/rating';
 import {MenubarModule} from 'primeng/menubar';
-import { ReviewComponent } from './components/shared/review/review.component';
 import {GalleriaModule} from 'primeng/galleria';
 import {DividerModule} from 'primeng/divider';
 
@@ -29,9 +27,7 @@ import {DividerModule} from 'primeng/divider';
     RoomComponent,
     MapComponent,
     DetailsComponent,
-    FooterComponent,
-    PictureComponent,
-    ReviewComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
