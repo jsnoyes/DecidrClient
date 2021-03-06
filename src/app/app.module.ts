@@ -23,6 +23,7 @@ import { LoginComponent } from './components/shared/login/login.component';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
+import {ToolbarModule} from 'primeng/toolbar';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {DialogModule} from 'primeng/dialog';
     DividerModule,
     InputTextModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    ToolbarModule
   ],
   providers: [LocationService, RoomService],
   bootstrap: [AppComponent]

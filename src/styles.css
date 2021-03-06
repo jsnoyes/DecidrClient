@@ -5,3 +5,7 @@
 .margin-center {
     margin: auto;
 }
+
+.app-full-width {
+    width: 100%;
+}

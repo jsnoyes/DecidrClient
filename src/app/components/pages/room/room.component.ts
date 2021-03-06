@@ -24,7 +24,6 @@ export class RoomComponent implements OnInit {
   public mapPanel: MapPanel | any;
   public detailsPanel: DetailPanel | any;
   public panelTypes = PanelType;
-  public menuItems!: MenuItem[];
   public displayDialog = false;
 
 
@@ -51,26 +50,13 @@ export class RoomComponent implements OnInit {
     });
     this.roomService.IsLoading.subscribe(i => this.isLoading = i);
     this.roomService.GetRoom(this.roomId);
-
-    this.menuItems = [
-      {
-          label: 'Downvote',
-          icon: 'pi pi-fw pi-plus',
-          command: this.downvote
-      },
-      {
-          label: 'Upvote',
-          icon: 'pi pi-fw pi-pencil',
-          command: this.upvote
-      }
-    ];
   }
 
-  private upvote(): void{
+  public upvote(): void{
 
   }
 
-  private downvote(): void{
+  public downvote(): void{
 
   }
 

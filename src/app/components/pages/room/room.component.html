@@ -7,11 +7,13 @@
             <app-details [detailViewModel]="detailsPanel"></app-details>
         </div>
     </div>
-    <div class="app-menu">
-        <p-menubar [model]="menuItems">
-            <ng-template pTemplate="start">{{activeDestination.name}}</ng-template>
-        </p-menubar>
-    </div>  
+    <app-footer style="z-index: 9999;">
+        <p-toolbar>
+            <p-button [style.margin-left]="'auto'" styleClass="p-button-danger" (click)="downvote()" icon="pi pi-times" title="Decline this choice"></p-button>
+            <span style="margin-left: 1em; margin-right: 1em">{{activeDestination.name}}</span>
+            <p-button [style.margin-right]="'auto'" styleClass="p-button-success" (click)="upvote()" icon="pi pi-check" title="Approve this choice"></p-button>
+        </p-toolbar>
+    </app-footer> 
 </div>
 <p-dialog header="Login" [modal]="true" [closable]="false" [resizable]="false" [draggable]="false" [(visible)]="displayDialog">
     <app-login></app-login>
