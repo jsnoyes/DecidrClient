@@ -53,11 +53,19 @@ export class RoomComponent implements OnInit {
   }
 
   public upvote(): void{
+    if (this.activeDestination?.id === undefined) {
+      return;
+    }
 
+    this.roomService.Vote(this.roomId, this.activeDestination.id, true);
   }
 
   public downvote(): void{
+    if (this.activeDestination?.id === undefined) {
+      return;
+    }
 
+    this.roomService.Vote(this.roomId, this.activeDestination.id, false);
   }
 
 }

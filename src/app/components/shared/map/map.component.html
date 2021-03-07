@@ -9,7 +9,7 @@
                 <p-galleria galleriaClass="app-panel-borders" [value]="mapViewModel.pictures" [containerStyle]="{'max-width': '100%'}" thumbnailsPosition="top">
                     <ng-template pTemplate="thumbnail" let-item>
                         <div class="p-grid p-nogutter p-justify-center">
-                            <img [src]="item" style="width: 100px"/>
+                            <img [src]="item" style="display:block; width: 100%">
                         </div>
                     </ng-template>
                     <ng-template pTemplate="item" let-item>

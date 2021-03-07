@@ -118,4 +118,19 @@ export class RoomService {
         sub.unsubscribe();
       });
   }
+
+  /**
+   * Vote
+   */
+  public Vote(roomId: string, destId: string, isVoteFor: boolean): void {
+    this.isLoading.next(true);
+    const sub = this.httpClient.post<RoomModel>(this.apiUrl + '/' + roomId + '/' + destId + '/vote/' + (isVoteFor === true ? '1' : '-1'),
+      null,
+      {withCredentials: true} )
+      .subscribe(r => {
+        this.room.next(r);
+        this.isLoading.next(false);
+        sub.unsubscribe();
+      });
+  }
 }
