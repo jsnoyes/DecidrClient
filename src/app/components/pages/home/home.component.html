@@ -1,7 +1,7 @@
 <p>home works!</p>
 <input type="text" [(ngModel)]="searchString" (change)="searchFromLocation()"/>
 <div *ngFor="let loc of potentialLocations">
-    <span>{{loc.Address}}</span>
+    <span>{{loc.address}}</span>
 </div> 
 
 <button (click)="createRoom()"></button>

@@ -8,9 +8,9 @@ export class RoomCriteriaModel {
     public RadiusMeters: number;
 
     constructor(fromLocation: LocationModel, category: string, radiusMeters: number) {
-        this.FromLatitude = fromLocation.Latitude;
-        this.FromLongitude = fromLocation.Longitude;
-        this.FromAddress = fromLocation.Address;
+        this.FromLatitude = fromLocation.latitude;
+        this.FromLongitude = fromLocation.longitude;
+        this.FromAddress = fromLocation.address;
         this.Category = category;
         this.RadiusMeters = radiusMeters;
     }

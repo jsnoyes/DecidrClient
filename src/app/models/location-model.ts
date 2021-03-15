@@ -1,5 +1,5 @@
 export class LocationModel {
-    public Latitude!: number;
-    public Longitude!: number;
-    public Address!: string;
+    public latitude!: number;
+    public longitude!: number;
+    public address!: string;
 }
