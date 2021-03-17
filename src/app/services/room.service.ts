@@ -30,6 +30,9 @@ export class RoomService {
   private isLoading = new BehaviorSubject<boolean>(true);
   public IsLoading = this.isLoading.asObservable();
 
+  private isVoteLoading = new BehaviorSubject<boolean>(false);
+  public IsVoteLoading = this.isVoteLoading.asObservable();
+
   constructor(private httpClient: HttpClient, private userService: UserService) {
     this.apiUrl = environment.urls.api + 'room';
     userService.User.subscribe(u => {
@@ -47,11 +50,7 @@ export class RoomService {
       if (r == null) {
         this.activeDestinationId.next(null);
       } else {
-        let activeDest = r.potentialDestinations.find(d => d.votes.findIndex(v => v.userId === this.user?.Id) === -1);
-        if (!activeDest) {
-          activeDest = r.potentialDestinations[r.potentialDestinations.length - 1];
-        }
-        const activeDestinationId = activeDest.id;
+        const activeDestinationId = r.potentialDestinations[0].id;
         this.activeDestinationId.next(activeDestinationId);
       }
     });
@@ -123,13 +122,13 @@ export class RoomService {
    * Vote
    */
   public Vote(roomId: string, destId: string, isVoteFor: boolean): void {
-    this.isLoading.next(true);
+    this.isVoteLoading.next(true);
     const sub = this.httpClient.post<RoomModel>(this.apiUrl + '/' + roomId + '/' + destId + '/vote/' + (isVoteFor === true ? '1' : '-1'),
       null,
       {withCredentials: true} )
       .subscribe(r => {
         this.room.next(r);
-        this.isLoading.next(false);
+        this.isVoteLoading.next(false);
         sub.unsubscribe();
       });
   }

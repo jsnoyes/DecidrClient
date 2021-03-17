@@ -9,9 +9,9 @@
     </div>
     <app-footer style="z-index: 9999;">
         <p-toolbar>
-            <p-button [style.margin-left]="'auto'" styleClass="p-button-danger" (click)="downvote()" icon="pi pi-times" title="Decline this choice"></p-button>
+            <p-button [style.margin-left]="'auto'" styleClass="p-button-danger" (onClick)="downvote()" icon="pi pi-times" title="Decline this choice" [disabled]="isVoteLoading"></p-button>
             <span style="margin-left: 1em; margin-right: 1em">{{activeDestination.name}}</span>
-            <p-button [style.margin-right]="'auto'" styleClass="p-button-success" (click)="upvote()" icon="pi pi-check" title="Approve this choice" label="Selected"></p-button>
+            <p-button [style.margin-right]="'auto'" [class]="isVoted === true ? 'app-button-selected' : ''" styleClass="p-button-success" (onClick)="upvote()" icon="pi pi-check" title="Approve this choice" [disabled]="isVoteLoading"></p-button>
         </p-toolbar>
     </app-footer> 
 </div>
