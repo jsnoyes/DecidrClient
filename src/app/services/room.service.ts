@@ -22,11 +22,11 @@ export class RoomService {
   private room = new BehaviorSubject<RoomModel | null>(null);
   public Room = this.room.asObservable();
 
-  private activeDestinationId = new BehaviorSubject<string | null>(null);
-  public ActiveDestinationId = this.activeDestinationId.asObservable();
+  // private activeDestinationId = new BehaviorSubject<string | null>(null);
+  // public ActiveDestinationId = this.activeDestinationId.asObservable();
 
-  private activeDestination = new BehaviorSubject<DestinationModel | null>(null);
-  public ActiveDestination = this.activeDestination.asObservable();
+  // private activeDestination = new BehaviorSubject<DestinationModel | null>(null);
+  // public ActiveDestination = this.activeDestination.asObservable();
 
   private isLoading = new BehaviorSubject<boolean>(true);
   public IsLoading = this.isLoading.asObservable();
@@ -39,59 +39,43 @@ export class RoomService {
     userService.User.subscribe(u => {
       this.user = u;
     });
-    this.ActiveDestinationId.subscribe(did => {
-        if (did == null) {
-          this.activeDestination.next(null);
-        } else {
-          const activeDestination = this.room.value?.potentialDestinations.find(d => d.id === did) || null;
-          this.activeDestination.next(activeDestination);
-      }
-    });
-    this.Room.subscribe(r => {
-      if (r == null) {
-        this.activeDestinationId.next(null);
-      } else {
-        const activeDestinationId = r.potentialDestinations[0].id;
-        this.activeDestinationId.next(activeDestinationId);
-      }
-    });
   }
 
   /**
    * NextDestination
    */
-  public NextDestination(): void {
-    this.isLoading.next(true);
-    const currentActiveDestinationId = this.activeDestinationId.value;
-    const dests = this.room.value?.potentialDestinations;
-    if (dests !== undefined){
-      let curActiveIndex = dests.findIndex(d => d.id === currentActiveDestinationId);
-      if (curActiveIndex < dests.length - 1) {
-        curActiveIndex++;
-      }
-      const newActiveDest = dests[curActiveIndex];
-      this.activeDestinationId.next(newActiveDest.id);
-    }
-    this.isLoading.next(false);
-  }
+  // public NextDestination(): void {
+  //   this.isLoading.next(true);
+  //   const currentActiveDestinationId = this.activeDestinationId.value;
+  //   const dests = this.room.value?.potentialDestinations;
+  //   if (dests !== undefined){
+  //     let curActiveIndex = dests.findIndex(d => d.id === currentActiveDestinationId);
+  //     if (curActiveIndex < dests.length - 1) {
+  //       curActiveIndex++;
+  //     }
+  //     const newActiveDest = dests[curActiveIndex];
+  //     this.activeDestinationId.next(newActiveDest.id);
+  //   }
+  //   this.isLoading.next(false);
+  // }
 
   /**
    * NextDestination
    */
-  public PreviousDestination(): void {
-    this.isLoading.next(true);
-    const currentActiveDestinationId = this.activeDestinationId.value;
-    const dests = this.room.value?.potentialDestinations;
-    if (dests !== undefined){
-      let curActiveIndex = dests.findIndex(d => d.id === currentActiveDestinationId);
-      if (curActiveIndex > 0) {
-        curActiveIndex--;
-      }
-      const newActiveDest = dests[curActiveIndex];
-      this.activeDestinationId.next(newActiveDest.id);
-    }
-    this.isLoading.next(false);
-  }
+  // public PreviousDestination(): void {
+  //   this.isLoading.next(true);
+  //   const currentActiveDestinationId = this.activeDestinationId.value;
+  //   const dests = this.room.value?.potentialDestinations;
+  //   if (dests !== undefined){
+  //     let curActiveIndex = dests.findIndex(d => d.id === currentActiveDestinationId);
+  //     if (curActiveIndex > 0) {
+  //       curActiveIndex--;
+  //     }
+  //     const newActiveDest = dests[curActiveIndex];
+  //     this.activeDestinationId.next(newActiveDest.id);
+  //   }
+  //   this.isLoading.next(false);
+  // }
 
   /**
    * CreateRoom
@@ -148,10 +132,8 @@ export class RoomService {
     this.isLoading.next(true);
     const sub = this.httpClient.get<DestinationModel>(this.apiUrl + '/' + room.id + '/choice', {withCredentials: true})
       .subscribe(d => {
-        const destIndex = room.potentialDestinations.findIndex(pd => pd.id === d.id);
-        room.potentialDestinations[destIndex] = d;
+        room.activeDestination = d;
         this.room.next(room);
-        this.activeDestinationId.next(d.id);
         this.isLoading.next(false);
 
         sub.unsubscribe();

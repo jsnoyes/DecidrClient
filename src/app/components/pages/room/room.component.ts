@@ -17,8 +17,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RoomComponent implements OnInit {
 
   private roomId!: string;
-  private room: RoomModel | null | undefined;
-  public activeDestination: DestinationModel | undefined;
+  public room: RoomModel | null | undefined;
   public isLoading = true;
   public isVoteLoading = false;
   public mapPanel: MapPanel | any;
@@ -43,15 +42,17 @@ export class RoomComponent implements OnInit {
       }
     });
     this.roomId = this.route.snapshot.paramMap.get('roomId') || '0';
-    this.roomService.Room.subscribe(r => this.room = r);
-    this.roomService.ActiveDestination.subscribe(d => {
-      if (d == null) {
+    this.roomService.Room.subscribe(r => {
+      this.room = r;
+
+      if (r?.activeDestination == null) {
         return;
       }
-      this.activeDestination = d;
-      this.mapPanel = new MapPanel(d);
-      this.detailsPanel = new DetailPanel(d);
-      const vote = d.votes.find(v => v.userId === this.userId);
+
+      this.mapPanel = new MapPanel(r.activeDestination);
+      this.detailsPanel = new DetailPanel(r.activeDestination);
+
+      const vote = r.activeDestination.votes.find(v => v.userId === this.userId);
       if (vote !== null){
         if (vote?.vote === 1){ /* in favor */
           this.isVoted = true;
@@ -68,19 +69,19 @@ export class RoomComponent implements OnInit {
   }
 
   public upvote(): void{
-    if (this.activeDestination?.id === undefined) {
+    if (this.room?.activeDestination?.id === undefined) {
       return;
     }
 
-    this.roomService.Vote(this.roomId, this.activeDestination.id, this.activeDestination.name, true);
+    this.roomService.Vote(this.roomId, this.room.activeDestination.id, this.room.activeDestination.name, true);
   }
 
   public downvote(): void{
-    if (this.activeDestination?.id === undefined) {
+    if (this.room?.activeDestination?.id === undefined) {
       return;
     }
 
-    this.roomService.Vote(this.roomId, this.activeDestination.id, this.activeDestination.name, false);
+    this.roomService.Vote(this.roomId, this.room.activeDestination.id, this.room.activeDestination.name, false);
   }
 
 }

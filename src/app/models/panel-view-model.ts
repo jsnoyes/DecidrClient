@@ -38,7 +38,7 @@ export class DetailPanel extends PanelViewModel {
             : undefined;
         this.phone = destination.phoneNumber;
         this.website = destination.url;
-        this.websiteDisplay = this.website.replace('https', '').replace('http', '').replace('://', '').replace('www.', '');
+        this.websiteDisplay = this.website?.replace('https', '').replace('http', '').replace('://', '').replace('www.', '');
         this.openHours = destination.openHours;
         this.name = destination.name;
         this.address = destination.addressName;
