@@ -5,7 +5,6 @@ import { DetailPanel, MapPanel, PanelViewModel } from 'src/app/models/panel-view
 import { PanelType } from 'src/app/models/panel-view-model';
 import { RoomModel } from 'src/app/models/room-model';
 import { RoomService } from 'src/app/services/room.service';
-import { MenuItem } from 'primeng/api/menuitem';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -73,7 +72,7 @@ export class RoomComponent implements OnInit {
       return;
     }
 
-    this.roomService.Vote(this.roomId, this.activeDestination.id, true);
+    this.roomService.Vote(this.roomId, this.activeDestination.id, this.activeDestination.name, true);
   }
 
   public downvote(): void{
@@ -81,7 +80,7 @@ export class RoomComponent implements OnInit {
       return;
     }
 
-    this.roomService.Vote(this.roomId, this.activeDestination.id, false);
+    this.roomService.Vote(this.roomId, this.activeDestination.id, this.activeDestination.name, false);
   }
 
 }

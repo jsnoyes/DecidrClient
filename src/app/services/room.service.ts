@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
@@ -33,7 +34,7 @@ export class RoomService {
   private isVoteLoading = new BehaviorSubject<boolean>(false);
   public IsVoteLoading = this.isVoteLoading.asObservable();
 
-  constructor(private httpClient: HttpClient, private userService: UserService) {
+  constructor(private httpClient: HttpClient, private userService: UserService, private messageService: MessageService) {
     this.apiUrl = environment.urls.api + 'room';
     userService.User.subscribe(u => {
       this.user = u;
@@ -121,12 +122,14 @@ export class RoomService {
   /**
    * Vote
    */
-  public Vote(roomId: string, destId: string, isVoteFor: boolean): void {
+  public Vote(roomId: string, destId: string, destName: string, isVoteFor: boolean): void {
     this.isVoteLoading.next(true);
     const sub = this.httpClient.post<RoomModel>(this.apiUrl + '/' + roomId + '/' + destId + '/vote/' + (isVoteFor === true ? '1' : '-1'),
       null,
       {withCredentials: true} )
       .subscribe(r => {
+        const message = isVoteFor === true ? {severity: 'success', detail: 'You approved ' + destName} : {severity: 'error', detail: 'You declined ' + destName};
+        this.messageService.add(message);
         this.room.next(r);
         this.isVoteLoading.next(false);
 

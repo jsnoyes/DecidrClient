@@ -24,6 +24,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {ToolbarModule} from 'primeng/toolbar';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,10 @@ import {ToolbarModule} from 'primeng/toolbar';
     InputTextModule,
     ButtonModule,
     DialogModule,
-    ToolbarModule
+    ToolbarModule,
+    ToastModule
   ],
-  providers: [LocationService, RoomService],
+  providers: [LocationService, RoomService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
