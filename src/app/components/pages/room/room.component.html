@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading && activeDestination">
+<div *ngIf="activeDestination">
     <div class="app-panel p-grid">
         <div class="p-xl-5 p-xl-offset-1 p-lg-6 p-lg-offset-0 p-md-10 p-md-offset-1 p-sm-12">
             <app-map [mapViewModel]="mapPanel"></app-map>
@@ -9,7 +9,7 @@
     </div>
     <app-footer style="z-index: 9999;">
         <p-toolbar>
-            <p-button [style.margin-left]="'auto'" styleClass="p-button-danger" (onClick)="downvote()" icon="pi pi-times" title="Decline this choice" [disabled]="isVoteLoading"></p-button>
+            <p-button [style.margin-left]="'auto'" [class]="isVetoed === true ? 'app-button-selected' : ''"  styleClass="p-button-danger" (onClick)="downvote()" icon="pi pi-times" title="Decline this choice" [disabled]="isVoteLoading"></p-button>
             <span style="margin-left: 1em; margin-right: 1em">{{activeDestination.name}}</span>
             <p-button [style.margin-right]="'auto'" [class]="isVoted === true ? 'app-button-selected' : ''" styleClass="p-button-success" (onClick)="upvote()" icon="pi pi-check" title="Approve this choice" [disabled]="isVoteLoading"></p-button>
         </p-toolbar>

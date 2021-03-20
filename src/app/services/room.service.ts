@@ -42,8 +42,8 @@ export class RoomService {
         if (did == null) {
           this.activeDestination.next(null);
         } else {
-        const activeDestination = this.room.value?.potentialDestinations.find(d => d.id === did) || null;
-        this.activeDestination.next(activeDestination);
+          const activeDestination = this.room.value?.potentialDestinations.find(d => d.id === did) || null;
+          this.activeDestination.next(activeDestination);
       }
     });
     this.Room.subscribe(r => {
@@ -129,6 +129,28 @@ export class RoomService {
       .subscribe(r => {
         this.room.next(r);
         this.isVoteLoading.next(false);
+
+        sub.unsubscribe();
+
+        this.FindNextChoice();
+      });
+  }
+
+  public FindNextChoice(): void {
+    const room = this.room.value;
+    if (room === null){
+      return;
+    }
+
+    this.isLoading.next(true);
+    const sub = this.httpClient.get<DestinationModel>(this.apiUrl + '/' + room.id + '/choice', {withCredentials: true})
+      .subscribe(d => {
+        const destIndex = room.potentialDestinations.findIndex(pd => pd.id === d.id);
+        room.potentialDestinations[destIndex] = d;
+        this.room.next(room);
+        this.activeDestinationId.next(d.id);
+        this.isLoading.next(false);
+
         sub.unsubscribe();
       });
   }
